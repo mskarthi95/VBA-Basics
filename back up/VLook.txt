@@ -1,0 +1,6 @@
+Public Sub findamt()
+Dim C_name As String
+C_name = InputBox("Enter the Clent Name to Find")
+Amt = Application.WorksheetFunction.VLookup(C_name, Sheet1.Range("B3:D10"), 3, False)
+MsgBox "Amount is " & Amt
+End Sub

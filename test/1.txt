@@ -1,0 +1,12 @@
+Private Sub ok_Click()
+Dim myFile As String, text As String, textline As String
+
+myFile = "D:\001\test\SampleTextFile_10kb.txt"
+Open myFile For Input As #1
+
+Do Until EOF(1)
+    Line Input #1, textline
+    text = text & textline
+Loop
+
+End Sub

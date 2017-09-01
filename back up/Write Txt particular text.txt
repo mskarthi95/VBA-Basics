@@ -1,0 +1,21 @@
+Private Sub Ok_Click()
+Dim myFile As String, text As String, textline As String, posRow As String, posCol As String
+myFile = "D:\001\test\SampleTextFile_10kb.txt"
+Open myFile For Input As #1
+
+Do Until EOF(1)
+    Line Input #1, textline
+    text = text & textline
+Loop
+
+Close #1
+
+posRow = InStr(text, "lat")
+posCol = InStr(text, "long")
+
+Range("A1").Value = Mid(text, posRow + 1000)
+Range("A2").Value = Mid(text, posCol + 1000)
+
+End Sub
+
+

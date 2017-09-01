@@ -1,0 +1,35 @@
+Private Sub RemoveDuplicate()
+Cells.RemoveDuplicates Columns:=Array(1)
+If Worksheets.Count < 10 Then
+Worksheets.Add().Name = "ClientDetails"
+End If
+Set tempsht = ThisWorkbook.Sheets("Sheet1")
+tempsht.Activate
+Worksheets("ClientDetails").Cells(1, 1).Value = "Bank a/c"
+Worksheets("ClientDetails").Cells(1, 2).Value = "Client Name"
+With tempsht
+.Range("A2:B" & Cells(Rows.Count, 2).End(xlUp).Row).Copy
+End With
+Worksheets("ClientDetails").Activate
+ActiveSheet.Range("A2").PasteSpecial
+'copydata from second
+
+Set temp = ThisWorkbook.Sheets("Sheet2")
+temp.Activate
+With temp
+Worksheets("ClientDetails").Cells(1, 3).Value = "Pan number"
+.Range("C2:C" & Cells(Rows.Count, 2).End(xlUp).Row).Copy
+End With
+Worksheets("ClientDetails").Activate
+ActiveSheet.Range("C2").PasteSpecial
+
+'copydata from third
+Set temp1 = ThisWorkbook.Sheets("Sheet2")
+temp1.Activate
+With temp1
+Worksheets("ClientDetails").Cells(1, 4).Value = "IFSC Code"
+.Range("D2:D" & Cells(Rows.Count, 2).End(xlUp).Row).Copy
+End With
+Worksheets("ClientDetails").Activate
+ActiveSheet.Range("D2").PasteSpecial
+End Sub

@@ -1,0 +1,34 @@
+Public Sub aPivot()
+
+Dim ws As Worksheet
+Dim pc As PivotCache
+Dim pt As PivotTable
+
+Set ws = Worksheets.Add
+Set pc = ActiveWorkbook.PivotCaches.Create(xlDatabase, "Sheet3!$A$1:$D$24")
+
+Set pt = pc.CreatePivotTable(ws.Range("B3"))
+
+With pt
+
+
+'set row field
+With .PivotFields("Client Name")
+.Orientation = xlRowField
+.Position = 1
+End With
+
+'set column field
+With .PivotFields("Deposit Date")
+.Orientation = xlColumnField
+.Position = 1
+End With
+
+ActiveSheet.Name = "Report"
+
+'***Create Calculated Field
+.CalculatedFields.Add "Savings", "=Amount*.1"
+'set data field
+.AddDataField .PivotFields("Savings"), "Sum of Savings", xlSum
+End With
+End Sub

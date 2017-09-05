@@ -1,0 +1,62 @@
+Option Compare Database
+
+Private Sub Command64_Click()
+
+Dim ob As DAO.Database
+Dim rs As DAO.Recordset
+
+Dim flag As Integer
+flag = 1
+Set ob = CurrentDb
+Set rs = ob.OpenRecordset("Registration")
+register = doregister(rs, flag)
+If register = 1 Then MsgBox "Inserted Succesfully"
+Set rs = Nothing
+Set rs = ob.OpenRecordset("Login")
+flag = 2
+register = doregister(rs, flag)
+Set rs = Nothing
+
+Me.FName = vbNullString
+Me.LName = vbNullString ' " "
+Me.Email = vbNullString
+Me.UserName = vbNullString
+Me.Password = vbNullString
+
+DoCmd.OpenForm "Test"
+DoCmd.Close acForm, "Registration"
+End Sub
+
+Public Function doregister(ByRef regObj As DAO.Recordset, ByVal flag As Integer)
+Dim rowcount, temp As Integer
+rowcount = 0
+If flag = 1 Then
+With regObj
+
+    .AddNew
+    .Fields!FName = Me.FName
+    .Fields!LName = Me.LName
+    .Fields!Email = Me.Email
+    .Fields!UserName = Me.UserName
+    .Fields!Password = Me.Password
+    .Update
+
+End With
+flag = 0
+doregister = 1
+End If
+If flag = 2 Then
+temp = temp + 1
+rowcount = temp
+With regObj
+    .AddNew
+    .Fields!ID = 3
+    .Fields!UserName = Me.UserName
+    .Fields!Password = Me.Password
+    .Update
+End With
+flag = 0
+doregister = 1
+End If
+End Function
+End Function

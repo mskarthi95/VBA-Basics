@@ -1,0 +1,27 @@
+Public Sub Word()
+
+Application.ScreenUpdating = False
+
+Worksheets("Sheet1").Range("A3:D26").Copy
+
+Dim WordApp As Object, WordNew As Object
+
+Set WordApp = CreateObject("Word.Application")
+
+WordApp.Visible = True
+
+WordApp.Activate
+
+Set WordNew = WordApp.Documents.Open(Filename:="D:\VBA-Basics\4\word.docx")
+
+WordNew.Range.Paste
+
+WordNew.Close savechanges:=True
+
+
+WordApp.Quit
+
+
+Application.ScreenUpdating = True
+
+End Sub

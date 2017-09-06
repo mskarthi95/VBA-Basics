@@ -12,3 +12,6 @@ VBA Access Refers
 	https://books.google.co.in/books?id=-rHIL270MLIC&pg=PA2&lpg=PA2&dq=jet+ACE+vba&source=bl&ots=Mn-SFQP3Ni&sig=jmxPSm5OnGlX3VNltPB3codVCLA&hl=en&sa=X&ved=0ahUKEwiOt6v-ho7WAhVDpJQKHfocDJ4Q6AEISTAG#v=onepage&q&f=false
 Error Handling in VBA
 	https://excelmacromastery.com/vba-error-handling/
+	
+Web Scraping
+	http://www.tushar-mehta.com/publish_train/xl_vba_cases/vba_web_pages_services/index.htm

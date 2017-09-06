@@ -1,0 +1,21 @@
+Sub ImportStackOverflowData()
+'to refer to the running copy of Internet Explorer
+Dim ie As InternetExplorer
+'to refer to the HTML document returned
+Dim html As HTMLDocument
+'open Internet Explorer in memory, and go to website
+Set ie = New InternetExplorer
+ie.Visible = False
+ie.navigate "http://stackoverflow.com/"
+'Wait until IE is done loading page
+Do While ie.readyState <> READYSTATE_COMPLETE
+Application.StatusBar = "Trying to go to StackOverflow ..."
+DoEvents
+Loop
+'show text of HTML document returned
+Set html = ie.document
+MsgBox html.DocumentElement.innerHTML
+'close down IE and reset status bar
+Set ie = Nothing
+Application.StatusBar = ""
+End Sub

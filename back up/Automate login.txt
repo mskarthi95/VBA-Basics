@@ -1,0 +1,44 @@
+
+Sub send()
+
+Dim HTMLDoc As HTMLDocument
+Dim oBrowser As InternetExplorer
+Dim oHTML_Element As IHTMLElement
+Dim sURL As String
+
+'On Error GoTo Err_Clear
+sURL = "https://github.com/login"
+Set oBrowser = New InternetExplorer
+oBrowser.Silent = True
+
+'oBrowser.timeout = 60
+
+oBrowser.navigate sURL
+oBrowser.Visible = True
+
+Do
+' Wait till the Browser is loaded
+Loop Until oBrowser.readyState = READYSTATE_COMPLETE
+
+Set HTMLDoc = oBrowser.document
+
+HTMLDoc.all.login_field.Value = ""
+HTMLDoc.all.Password.Value = ""
+
+For Each oHTML_Element In HTMLDoc.getElementsByTagName("input")
+If oHTML_Element.Value = "Sign in" Then oHTML_Element.Click: Exit For
+Next
+
+If oHTML_Element.Type = "submit" Then oHTML_Element.Click:
+
+
+' oBrowser.Refresh ' Refresh If Needed
+'Err_Clear:
+'If Err <> 0 Then
+'Debug.Assert Err = 0
+'Err.Clear
+'Resume Next
+'End If
+
+
+End Sub
